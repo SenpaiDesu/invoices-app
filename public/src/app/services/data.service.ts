@@ -43,4 +43,19 @@ export class DataService {
     return this._http.delete(`${this.apiUrl}/invoices/${id}`);
   }
 
+  addCustomer(customer: Customer): Observable<Customer> {
+    return this._http.post(`${this.apiUrl}/customers`, customer);
+  }
+
+  removeCustomer(id: number): Observable<Customer> {
+    return this._http.delete(`${this.apiUrl}/customers/${id}`);
+  }
+
+  addProduct(customer: Product): Observable<Product> {
+    return this._http.post(`${this.apiUrl}/products`, customer);
+  }
+
+  removeProduct(id: number): Observable<Product> {
+    return this._http.delete(`${this.apiUrl}/products/${id}`);
+  }
 }

@@ -1,9 +1,51 @@
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#addCustomer">ADD NEW CUSTOMER</button>
+
+<div class="modal fade" id="addCustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">ADD NEW CUSTOMER</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class='form-group'>
+          <label for="name">Full name:</label>
+          <input 
+            type="text" class='form-control' id='name' placeholder='Full name..' required
+            [(ngModel)]='input.name'
+          >
+        </div>
+        <div class='form-group'>
+          <label for="address">Address</label>
+          <input 
+            type="text" class='form-control' id='address' placeholder='Steve Job`s st. 999' required
+            [(ngModel)]='input.address'
+          >
+        </div>
+        <div class='form-group'>
+          <label for="address">Phone</label>
+          <input 
+            type="text" class='form-control' id='phone' placeholder='38 (000) 000-00-00' required
+            [(ngModel)]='input.phone'
+          >
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)='onPostCustomer()'>POST NEW CUSTOMER</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <table class='table'>
   <thead>
     <tr>
       <th>ID</th>
       <th>NAME</th>
-      <th>ADRESS</th>
+      <th>ADDRESS</th>
       <th>PHONE</th>
     </tr>
   </thead>
@@ -13,6 +55,14 @@
       <td>{{customer.name}}</td>
       <td>{{customer.address}}</td>
       <td>{{customer.phone}}</td>
+      <td>
+        <button 
+          type="button" class="btn btn-danger"
+          (click)='onRemoveCustomer(customer.id)'
+        >
+          DELETE
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>

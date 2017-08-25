@@ -54,7 +54,7 @@ export class InvoicesComponent implements OnInit {
       )
   }
 
-  onRemoveInvoice(id) {
+  onRemoveInvoice(id: number) {
     this._dataService.removeInvoice(id)
       .subscribe(
         success => { this.ngOnInit() },
