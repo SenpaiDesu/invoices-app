@@ -1,0 +1,81 @@
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#addInvoice">ADD NEW INVOICE</button>
+
+<div class="modal fade" id="addInvoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">ADD NEW INVOICE</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class='form-group'>
+          <label for="customer"></label>
+          <select class='form-control' id="customer" required [(ngModel)]='input.customer_id'>
+            <option disabled selected value>Choose customer</option>
+            <option 
+              *ngFor='let customer of customers' 
+              [value]="customer.id"   
+            >
+              {{customer.name}}
+            </option>
+          </select>
+        </div>
+        <div class='form-group'>
+          <label for="products"></label>
+          <select multiple class='form-control' id="products" required [(ngModel)]='prices' (change)='onChangeTotalCost()'>
+            <option 
+              *ngFor='let product of products' 
+              [value]="product.price" 
+            >
+              {{product.name}}
+            </option>
+          </select>
+        </div>
+        <div class='form-group'>
+          <label for="discount"></label>
+          <input 
+            type="text" class='form-control' id='discount' placeholder='0.0%'
+            [(ngModel)]='input.discount'
+            (keyup)='onChangeTotalCost()'
+          >
+        </div>
+        <div class='form-group'>
+          <h5 class="modal-title">TOTAL: {{input.total}}</h5>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)='onPostInvoice()'>POST NEW INVOICE</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table class='table'>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>CUSTOMER</th>
+      <th>DISCOUNT</th>
+      <th>TOTAL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor='let invoice of invoices'>
+      <td>{{invoice.id}}</td>
+      <td>{{invoice.customer_id}}</td>
+      <td>{{invoice.discount}}</td>
+      <td>{{invoice.total}}</td>
+      <td>
+        <button 
+          type="button" class="btn btn-danger"
+          (click)='onRemoveInvoice(invoice.id)'
+        >
+          DELETE
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
