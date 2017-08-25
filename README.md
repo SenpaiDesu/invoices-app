@@ -7,10 +7,12 @@
 # Getting Started
 
 ###### Install npm dependencies
-`npm install`
+`npm i`
+`cd public`
+`npm i`
 
 ###### Run the node server
-`node app.js`
+`npm start`
 
 ###### Viewing the application in your browser
 `http://localhost:8000`
